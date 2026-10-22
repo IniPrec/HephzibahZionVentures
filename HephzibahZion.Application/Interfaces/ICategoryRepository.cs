@@ -4,10 +4,10 @@ namespace HephzibahZion.Application.Interfaces
 {
     public interface ICategoryRepository
     {
-        public Task<IEnumerable<Category>> GetAllCategoriesAsync();
-        public Task<Category?> GetCategoryByIdAsync(Guid id);
-        public Task<Category> CreateCategoryAsync(Category category);
-        public Task<Category?> UpdateCategoryAsync(Category category);
-        public Task<bool> DeleteCategoryAsync(Guid id);
+        Task<IEnumerable<Category>> GetAllCategoriesAsync();
+        Task<Category?> GetCategoryByIdAsync(Guid id);
+        Task<Category> CreateCategoryAsync(Category category);
+        Task<Category?> UpdateCategoryAsync(Category category);
+        Task<bool> DeleteCategoryAsync(Guid id);
     }
 }
