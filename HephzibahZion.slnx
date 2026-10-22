@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Hephzibah.Domain/HephzibahZion.Domain.csproj" />
+  <Project Path="HephzibahZion.Application/HephzibahZion.Application.csproj" />
+  <Project Path="HephzibahZion.Infrastructure/HephzibahZion.Infrastructure.csproj" />
+  <Project Path="HephzibahZion.Presentation/HephzibahZion.Presentation.csproj" />
+  <Project Path="HephzibahZion.Test/HephzibahZion.Test.csproj" />
+</Solution>
