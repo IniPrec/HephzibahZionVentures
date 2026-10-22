@@ -7,13 +7,11 @@ namespace HephzibahZion.Application.Services
     { 
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IOrderRepository _orderRepository;
 
-        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository, IOrderRepository orderRepository)
+        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
-            _orderRepository = orderRepository;
         }
 
         private async Task ValidateAsync(Product product)
@@ -39,9 +37,9 @@ namespace HephzibahZion.Application.Services
             return await _productRepository.CreateProductAsync(product);
         }
 
-        public Task<bool> DeleteProductAsync(Guid id)
+        public async Task<bool> DeleteProductAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _productRepository.DeleteProductAsync(id);
         }
 
         public async Task<IEnumerable<Product>> GetActiveProductsAsync()
