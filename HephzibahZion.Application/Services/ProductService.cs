@@ -3,7 +3,7 @@ using HephzibahZion.Domain.Entities;
 
 namespace HephzibahZion.Application.Services
 {
-    internal class ProductService : IProductService
+    public class ProductService : IProductService
     { 
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;

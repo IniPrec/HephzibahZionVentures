@@ -8,7 +8,7 @@ namespace HephzibahZion.Application.Interfaces
         Task<IEnumerable<Order>> GetAllOrdersAsync();
         Task<Order?> GetOrderByIdAsync(Guid id);
         Task<Order> CreateOrderAsync(Order order);
-        Task<Order?> UpdateOrderAsync(Order order);
+        Task<Order?> UpdateOrderStatusAsync(Guid id, OrderStatus newStatuse);
         Task<IEnumerable<Order>> GetOrdersByStatusAsync(OrderStatus status);
     }
 }
