@@ -26,11 +26,11 @@ namespace HephzibahZion.Infrastructure.Repository
             return product;
         }
 
-        public async Task<bool> DeleteProductAsync(Guid id)
+        public async Task<bool> DeactivateProductAsync(Guid id)
         {
             using var connection = _connectionFactory.CreateConnection();
 
-            var rows = await connection.ExecuteAsync("DELETE FROM Products WHERE Id = @Id", new { Id = id });
+            var rows = await connection.ExecuteAsync("UPDATE Products SET IsActive = 0 WHERE Id = @Id", new {Id = id});
 
             return rows > 0;
         }
@@ -57,26 +57,26 @@ namespace HephzibahZion.Infrastructure.Repository
         }
 
         public async Task<IEnumerable<Product>> GetProductsByCategoryIdAsync(Guid categoryId)
-        {
+        { 
             using var connection = _connectionFactory.CreateConnection();
 
-            return await connection.QueryAsync<Product>("SELECT * FROM Products WHERE CategoryId = @CategoryId", new { CategoryId = categoryId });
+            return await connection.QueryAsync<Product>("SELECT * FROM Products WHERE CategoryId = @CategoryId AND IsActive = 1", new { CategoryId = categoryId });
         }
 
-        public Task<IEnumerable<Product>> SearchProductsByNameAsync(string product)
+        public async Task<IEnumerable<Product>> SearchProductsByNameAsync(string name)
         {
             using var connection = _connectionFactory.CreateConnection();
             
-            return connection.QueryAsync<Product>("SELECT * FROM Products WHERE ProductName LIKE @ProductName", new { ProductName = $"%{product}%" });
+            return await connection.QueryAsync<Product>("SELECT * FROM Products WHERE ProductName LIKE @ProductName AND IsActive = 1", new { ProductName = $"%{name}%" });
         }
 
         public async Task<Product?> UpdateProductAsync(Product product)
         {
             using var connection = _connectionFactory.CreateConnection();
 
-            var column = await connection.ExecuteAsync("UPDATE Products SET ProductName = @ProductName WHERE Id = @Id", product);
+            var rows = await connection.ExecuteAsync("UPDATE Products SET ProductName = @ProductName, Price = @Price, StockQuantity = @StockQuantity, ImageUrl = @ImageUrl, CategoryId = @CategoryId, IsActive = @IsActive WHERE Id = @Id", product);
 
-            return column > 0 ? product : null;
+            return rows > 0 ? product : null;
         }
     }
 }
