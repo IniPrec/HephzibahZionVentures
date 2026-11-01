@@ -7,9 +7,9 @@ namespace HephzibahZion.Application.Interfaces
         Task<Product?> GetProductByIdAsync(Guid id);
         Task<IEnumerable<Product>> GetProductsByCategoryIdAsync(Guid categoryId);
         Task<IEnumerable<Product>> GetActiveProductsAsync();
-        Task<IEnumerable<Product>> SearchProductsByNameAsync(string product);
+        Task<IEnumerable<Product>> SearchProductsByNameAsync(string name);
         Task<Product> CreateProductAsync(Product product);
         Task<Product?> UpdateProductAsync(Product product);
-        Task<bool> DeleteProductAsync(Guid id);
+        Task<bool> DeactivateProductAsync(Guid id);
     }
 }
