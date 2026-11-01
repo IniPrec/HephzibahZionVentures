@@ -37,9 +37,9 @@ namespace HephzibahZion.Application.Services
             return await _productRepository.CreateProductAsync(product);
         }
 
-        public async Task<bool> DeleteProductAsync(Guid id)
+        public async Task<bool> DeactivateProductAsync(Guid id)
         {
-            return await _productRepository.DeleteProductAsync(id);
+            return await _productRepository.DeactivateProductAsync(id);
         }
 
         public async Task<IEnumerable<Product>> GetActiveProductsAsync()
@@ -57,9 +57,9 @@ namespace HephzibahZion.Application.Services
             return await _productRepository.GetProductsByCategoryIdAsync(categoryId);
         }
 
-        public async Task<IEnumerable<Product>> SearchProductsByNameAsync(string product)
+        public async Task<IEnumerable<Product>> SearchProductsByNameAsync(string name)
         {
-            return await _productRepository.SearchProductsByNameAsync(product);
+            return await _productRepository.SearchProductsByNameAsync(name);
         }
 
         public async Task<Product?> UpdateProductAsync(Product product)
